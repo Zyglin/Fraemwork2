@@ -26,13 +26,22 @@ namespace Framework.Page
 
         [FindsBy(How = How.XPath, Using = $"//td[@data-month='{0}'][@data-year='{1}']/a[text()='{2}']", dateTime(2).Month, dateTime(2).Year, dateTime(2).Day)]
         private IWebElement DatePlus3Days { get; set; }
-        
+
+        [FindsBy(How = How.XPath, Using = $"//td[@data-month='{0}'][@data-year='{1}']/a[text()='{2}']", dateTime(0).Month, dateTime(0).Year, dateTime(0).Day)]
+        private IWebElement Date { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//input[@id='customSpnr0ADULT']/../a[@name='upperCountSpinner']")]
+        private IWebElement AdultsCountPlusInTicket { get; set; }
+
         [FindsBy(How = How.XPath, Using = "//input[@id='customSpnr1CHILD']/../a[@name='upperCountSpinner']")]
         private IWebElement ChildCountPlusInTicket { get; set; }
-
-        // "//input[@id='customSpnr2INFANT']/../a[@name='upperCountSpinner']"
+        
         [FindsBy(How = How.XPath, Using = "//input[@id='customSpnr2INFANT']/../a[@name='upperCountSpinner']")]
         private IWebElement InfantCountPlusInTicket { get; set; }
+
+        //ws-normal vertical-top dib
+        [FindsBy(How = How.XPath, Using = "//p[@class='ws-normal vertical-top dib']")]
+        private IWebElement MaxCountPeopleError { get; set; }
 
         [FindsBy(How = How.Id, Using = "choosePerson_btn1")]
         private IWebElement HrefCloseChoosePerson { get; set; }
@@ -71,13 +80,13 @@ namespace Framework.Page
         public void AirportFlyFrom(string airportFrom)
         {
             ButtonInputFrom.Click();
-            InputFrom.SendKeys(airportFrom);//mxp
+            InputFrom.SendKeys(airportFrom);
         }
 
         public void AirportFlyTo(string airportTo)
         {
             ButtonInputTo.Click();
-            InputTo.SendKeys(airportTo);//cdg
+            InputTo.SendKeys(airportTo);
         }
         public void SelectDate()
         {
@@ -90,8 +99,13 @@ namespace Framework.Page
             wait.Until(ExpectedConditions.ElementIsVisible(DatePlus3Days)).Click();
             ButtonSubmitDate.Click();
         }
-        
-        public void ChoosePerson()
+
+        public void SelectDateForThirdTest()
+        {
+            wait.Until(ExpectedConditions.ElementIsVisible(Date)).Click();
+            ButtonSubmitDate.Click();
+        }
+        public void ChoosePersonButtonOK()
         {
             HrefCloseChoosePerson.Click();
         }
@@ -105,6 +119,18 @@ namespace Framework.Page
         {
             ChildCountPlusInTicket.Click();
             InfantCountPlusInTicket.Click();
+        }
+
+        public void Choose7AdultAnd7Child()
+        {
+            for (int i = 0; i < 6; i++)
+            {
+                AdultsCountPlusInTicket.Click();
+            }
+            for (int i = 0; i < 7; i++)
+            {
+                ChildCountPlusInTicket.Click();
+            }
         }
     }
 }

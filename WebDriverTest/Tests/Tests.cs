@@ -17,6 +17,8 @@ namespace Framework.Automation
         private const string informationTextAboutCityWhereBookTicket = "Cтамбул,Турция";
         private const string bookTickertext = " Забронировать перелёт";
         private const string durationFlightText = "Продолжительность рейса";
+        private const string maxCountPeopleErrorText = "Максимальное количество пассажиров, за исключением младенцев, составляет 9 человек на внутренние рейсы, 7 человек на международные рейсы и 5 человек на премиальные рейсы.";
+        private const string sameDateErrorText = "Departure and arrival points cannot be the same. Please change one.";
 
         [SetUp]
         public void Init()
@@ -60,6 +62,20 @@ namespace Framework.Automation
         {
             steps.FillingFormForTheSearchTicketWith3Person();
             Assert.AreEqual(durationFlightText, steps.FlightResultDuration());
+        }
+
+        //test 3
+        [Test]
+        public void MaxCountPeopleOnTheOrder()
+        {
+            Assert.AreEqual(maxCountPeopleErrorText, steps.FillingFormForTheSearchTicketWith14Person());
+        }
+
+        // test 4
+        [Test]
+        public void SameDateError()
+        {
+            Assert.AreEqual(sameDateErrorText, steps.SameDate());
         }
     }
 }

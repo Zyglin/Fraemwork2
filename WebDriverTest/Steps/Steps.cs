@@ -57,7 +57,7 @@ namespace Framework
             homePage.AirportFlyFrom("mxp");
             homePage.AirportFlyTo("cdg");
             homePage.SelectDate();
-            homePage.ChoosePerson();
+            homePage.ChoosePersonButtonOK();
             homePage.SendMainForm();
         }
 
@@ -76,17 +76,22 @@ namespace Framework
             homePage.AirportFlyTo("vko");
             homePage.SelectDateForSecondTest();
             homePage.ChooseChildAndInfant();
-            homePage.ChoosePerson();
+            homePage.ChoosePersonButtonOK();
             homePage.SendMainForm();
         }
 
-        public string FlightResultDuration()
+        //test 3
+        public void FillingFormForTheSearchTicketWith14Person()
         {
-            ResultPage resultPage = new ResultPage();
-            return resultPage.FlightDuration();
+            HomePage homePage = new HomePage(driver);
+            homePage.OpenPage();
+            homePage.AirportFlyFrom("msq");
+            homePage.AirportFlyTo("vko");
+            homePage.SelectDateForThirdTest();
+            homePage.Choose7AdultAnd7Child();
+            homePage.ChoosePersonButtonOK();
+            homePage.SendMainForm();
         }
-
-
     }
 }
 
