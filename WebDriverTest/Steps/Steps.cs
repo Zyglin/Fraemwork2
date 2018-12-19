@@ -81,7 +81,7 @@ namespace Framework
         }
 
         //test 3
-        public void FillingFormForTheSearchTicketWith14Person()
+        public string FillingFormForTheSearchTicketWith14Person()
         {
             HomePage homePage = new HomePage(driver);
             homePage.OpenPage();
@@ -90,7 +90,90 @@ namespace Framework
             homePage.SelectDateForThirdTest();
             homePage.Choose7AdultAnd7Child();
             homePage.ChoosePersonButtonOK();
+            return homePage.MaxCountPeopleErrorInFrom();
+        }
+
+        //test 4
+        public string SameDate()
+        {
+            HomePage homePage = new HomePage(driver);
+            homePage.OpenPage();
+            homePage.AirportFlyFrom("msq");
+            homePage.AirportFlyTo("msq");
+            homePage.SelectDate();
+            return homePage.DateErorInForm();
+        } 
+
+        //test 5
+        public string ThreeAdultAndFiveChildInTicket()
+        {
+            HomePage homePage = new HomePage(driver);
+            homePage.OpenPage();
+            homePage.AirportFlyFrom("msq");
+            homePage.AirportFlyTo("vko");
+            homePage.SelectDate();
+            homePage.Choose3AdultsAnd5Child();
+            return homePage.ChildCountErrorInForm();
+        }
+        //test 6
+        public MultiFlightDeparture()
+        {
+            HomePage homePage = new HomePage(driver);
+            homePage.OpenPage();
+            homePage.SendMultiChoose();
+        }
+
+        public FlightDepartureCheck()
+        {
+            ResultPage resultPage = new ResultPage();
+            return resultPage.DepartureFlightText();
+        }
+        //test 7
+        public void ShowAllCompanies()
+        {
+            HomePage homePage = new HomePage(driver);
+            homePage.OpenPage();
+            homePage.CLickShowAllCompanies();           
+        }
+
+        public string ChooseSpechialOffers()
+        {
+            ResultPage resultPage = new ResultPage();
+            return resultPage.FindSpechialOfferForFlight("lgw");
+        }
+
+
+        //test 9 
+        public string FindFlightMember()
+        {
+            HomePage homePage = new HomePage(driver);
+            homePage.OpenPage();
+            homePage.FlightStatus();
+        }
+
+        public string FlightResultDuration()
+        {
+            ResultPage resultPage = new ResultPage();
+            return resultPage.ResultFlightMember();
+        }
+
+        //test 10
+        public string FindFlight()
+        {
+            HomePage homePage = new HomePage(driver);
+            homePage.OpenPage();
+            HomePage homePage = new HomePage(driver);
+            homePage.OpenPage();
+            homePage.AirportFlyFrom("msq");
+            homePage.AirportFlyTo("vko");
+            homePage.SelectDate();
             homePage.SendMainForm();
+        }
+
+        public string FlightNotFoundError()
+        {
+            ResultPage resultPage = new ResultPage();
+            return resultPage.FlighNotFoundError();
         }
     }
 }
